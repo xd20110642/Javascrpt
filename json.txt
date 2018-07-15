@@ -1,0 +1,24 @@
+json只有2种数据格式：1.数组2.对象
+1.数组： “[{}，{}]   2.对象: {"key":"value","key":"value"} 如果值是字符，则必须用引号，数值型则不须要。
+2.在数据传输过程种，json是以文本，即以字符串形式传递，而js操作的是json对象，所以json对象和json字符串之间的转换是关键。
+
+json字符串：在对象的基础上前后加上','				json对象：就是没有
+var str1 = '{							var str2 = {
+        "key": "test1",							 "key": "test1",
+        "value": 123,							''value": 123,
+        "type": "number",						"type": "number",
+        "required": "true",						 "required": "true",
+        "description": "字段描述2",					 "description": "字段描述2",
+        "children": []							 "children": []
+	 }'									}
+   
+ 3.json字符串转换为json对象（字符串--->json对象）:三种方法 转换函数 jq转换函数  eval（）方法（后面2种意义不大，因为一般用第一种即可）
+	3.1转换函数：JSON.parse()方法
+	var a='{"a":2}';
+	JSON.parse(a);//{a:2}
+ 4.json对象转换为字符串（json对象-->字符串）
+
+	4.1转换函数:JSON.stringify()方法，将非字符串转换为字符串
+	var s={"a":2}
+	JOSN.stringify(s);//"{"a":2}"	
+	

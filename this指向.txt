@@ -1,0 +1,57 @@
+核心：哪个对象调用函数，函数里面的this指向哪个对象
+第一种：普通函数调用 //普通函数都指向的是window
+var name=123；
+function fn(){
+cosnole.log(this.name) //这里的this指向的是window，因为var声明的变量是全局变量也就是window对象  
+}
+let name=123;
+function fn(){
+cosnole.log(this.name) //这里的this指向的是当前作用域下的this，因为let声明的变量是块级作用域，所有在这个情况下面let是window  
+}
+fn() //在这里是window调用了fn（）所有指向了window
+第二种:对象调用    //this指向的对象本身 也就是那个函数调用，this指向谁 
+let name=123;
+let obj={
+	id:123,
+	fn:function(){
+	console.log(this.name);
+	console.log(this.id);
+	}
+}
+obj.fn();//这里是对象调用了函数 所以this指向对象也就是obj
+ 
+第三种：构造函数调用  //this指向构造函数的实例化对象     如果构造函数有返回对象，那么就直接返回这个对象，而不是返回创造的对象
+function Person(）{
+	this.name=123;
+	}
+ let a=new Person();
+ console.log(a.name);
+
+第四种：箭头函数调用  //箭头函数里面的 this 是继承外面的环境
+
+特别注意的一点：
+let obj={
+    name:'程新松',
+    fn:function(){
+        setTimeout(function(){console.log(this.name)}) //undefined  
+    }
+}
+
+//虽然 fn() 里面的 this 是指向 obj ，但是，传给 setTimeout 的是普通函数， this 指向是 window ， window 下面没有 name  
+//定时器都是由window调用 也就是普通函数 为什么可以这么说 因为
+setTimeout(fn,1000)
+function fn(){  //这就是一个普通函数  也就是window调用 所以为普通函数
+xxxx
+}
+//
+
+//换成箭头函数
+let obj={
+    name:"程新松",
+    fn:function(){
+        setTimeout(()=>{console.log(this.name)});
+    }
+}
+obj.fn();
+//传给 setTimeout 的是箭头函数，然后箭头函数里面没有 this ，所以要向上层作用域查找，在这个例子上， setTimeout 的上层作用域是 fn 。而 fn 里面的 this 指向 obj ，
+//所以 setTimeout 里面的箭头函数的 this ，指向 obj 。所以输出 程新松。
