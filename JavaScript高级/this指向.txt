@@ -55,3 +55,7 @@ let obj={
 obj.fn();
 //传给 setTimeout 的是箭头函数，然后箭头函数里面没有 this ，所以要向上层作用域查找，在这个例子上， setTimeout 的上层作用域是 fn 。而 fn 里面的 this 指向 obj ，
 //所以 setTimeout 里面的箭头函数的 this ，指向 obj 。所以输出 程新松。
+
+
+
+call apply bind this是第一个参数
